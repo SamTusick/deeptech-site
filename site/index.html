@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FGCU DeepTech — Student Rocketry at Florida Gulf Coast University</title>
+<meta name="description" content="FGCU DeepTech is a student club at Florida Gulf Coast University building and flying a high-power rocket. Target launch: around November 30, 2026.">
+<meta name="theme-color" content="#07090D">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FGCU DeepTech">
+<meta property="og:image" content="assets/img/logo.jpg">
+<meta property="og:description" content="Student rocketry at Florida Gulf Coast University. Target launch: around November 30, 2026.">
+
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- STATUS STRIP -->
+<div class="strip" aria-label="Status">
+  <div class="strip__in wrap">
+    <span class="go" data-strip-t>Target launch ~Nov 30, 2026</span>
+    <span>26.4637&deg;N 81.7748&deg;W</span>
+    <span class="hide-s">Fort Myers, FL</span>
+  </div>
+  <i class="strip__prog" aria-hidden="true"></i>
+</div>
+
+<!-- ALTITUDE RAIL: scroll depth read as altitude, 0 ft to the ~5,000 ft predicted apogee -->
+<div class="alt" aria-hidden="true">
+  <span>ALT</span>
+  <div class="alt__track">
+    <i class="alt__fill"></i>
+    <svg class="alt__rocket" viewBox="0 0 14 28">
+      <path class="flame" d="M5.2 20 7 27l1.8-7Z" fill="#E8A33D"/>
+      <path d="M4 14 1.5 19.5V20H4Zm6 0 2.5 5.5V20H10Z" fill="#3FD99A"/>
+      <path d="M7 1c2.5 2.5 3 5 3 7v11H4V8c0-2 .5-4.5 3-7Z" fill="#E9EDF3"/>
+      <circle cx="7" cy="8.5" r="1.3" fill="#002D72"/>
+    </svg>
+  </div>
+  <span class="alt__val">0 ft</span>
+</div>
+
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a class="brand" href="index.html" aria-label="FGCU DeepTech home">
+      <img src="assets/img/logo-96.png" alt="" width="32" height="32">
+      <span>FGCU DeepTech</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="index.html#rocket">Rocket</a>
+      <a href="payload.html">Payload Challenge</a>
+      <a href="join.html">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <a href="index.html" aria-current="page">Home</a>
+  <a href="index.html#rocket">Rocket</a>
+  <a href="payload.html">Payload Challenge</a>
+  <a href="join.html">Join</a>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <span class="label" data-rv>Florida Gulf Coast University</span>
+        <h1 class="h1" data-rv>Student rocketry<br>at <span class="accent">FGC</span><span class="sub-word">U</span>.</h1>
+        <p class="lede" data-rv>
+          FGCU DeepTech is a student club designing, building and flying a high-power rocket &mdash;
+          and giving other FGCU students the chance to put their own experiments on board.
+        </p>
+        <div class="btn-row" data-rv>
+          <a class="btn btn--primary" href="join.html">Join the club <span class="arw">&rarr;</span></a>
+          <a class="btn" href="payload.html">Payload Challenge <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+
+      <aside class="panel" data-rv aria-label="Target launch">
+        <span class="label">Target launch</span>
+        <div class="launch__date">Around November 30, 2026</div>
+        <div class="launch__days"><b data-days>&mdash;</b><span>days to go</span></div>
+        <p class="launch__note">The date may move with weather, readiness, site requirements and safety.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ROCKET -->
+  <section class="section" id="rocket">
+    <div class="wrap two">
+      <div class="section__head" data-rv>
+        <span class="label">The rocket</span>
+        <h2 class="h2">About twelve feet tall, flying on an L-class motor.</h2>
+        <p class="lede">
+          This season's vehicle is a high-power rocket built by the Rocket Building Team.
+          It will also carry the two student payloads selected in the
+          <a class="inline" href="payload.html">Payload Challenge</a>.
+        </p>
+        <p class="muted" style="margin-top:18px">Performance figures are predictions and will be updated as the design is finalized.</p>
+      </div>
+
+      <dl class="facts" data-rv>
+        <div><dt>Height</dt><dd>~12<small>ft</small></dd></div>
+        <div><dt>Motor</dt><dd>L900</dd></div>
+        <div><dt>Predicted apogee</dt><dd>~5,000<small>ft</small></dd></div>
+        <div><dt>Predicted top speed</dt><dd>~0.55<small>Mach</small></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- PAYLOAD CHALLENGE -->
+  <section class="section" id="challenge">
+    <div class="wrap two">
+      <div data-rv>
+        <span class="label">Fall 2026 &middot; Payload Challenge</span>
+        <h2 class="h2" style="margin-top:14px">Two student payloads. One real rocket flight.</h2>
+        <p class="lede" style="margin-top:16px">
+          FGCU students from any major design a small experiment that tests a technology with a
+          real-world application. Two teams are selected, each receives $500 for payload
+          components, and both experiments fly on our rocket.
+        </p>
+        <div class="btn-row" style="margin-top:28px">
+          <a class="btn" href="payload.html">Challenge details <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+      <dl class="facts" data-rv>
+        <div><dt>Teams selected</dt><dd>2</dd></div>
+        <div><dt>Award per team</dt><dd>$500</dd></div>
+        <div><dt>Payload space</dt><dd>6&times;10<small>in</small></dd></div>
+        <div><dt>Winners announced</dt><dd>Oct 12</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- TEAMS + PEOPLE -->
+  <section class="section" id="team">
+    <div class="wrap">
+      <div class="section__head" data-rv>
+        <span class="label">The club</span>
+        <h2 class="h2">Two teams, one launch.</h2>
+        <p class="lede">We're splitting into two teams this semester. Members are being selected now.</p>
+      </div>
+
+      <div class="cards" data-rv>
+        <article class="card">
+          <span class="label">Team 01</span>
+          <h3>Rocket Building</h3>
+          <p>Builds and flies the rocket.</p>
+          <p class="status">Selection coming soon</p>
+        </article>
+        <article class="card">
+          <span class="label">Team 02</span>
+          <h3>Outreach &amp; Marketing</h3>
+          <p>Gets the word out about the club and the launch.</p>
+          <p class="status">Selection coming soon</p>
+        </article>
+      </div>
+
+      <h3 class="h3" style="margin:56px 0 16px" data-rv>Leadership</h3>
+      <ul class="people" data-rv>
+        <li><b>Mia Mellor</b><span>President</span></li>
+        <li><b>George Alenchery</b><span>Secretary</span></li>
+        <li><b>Luca Principi</b><span>Advisor</span></li>
+        <li><b>Mattia Barbarossa</b><span>Advisor</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <section class="section" id="sponsors">
+    <div class="wrap">
+      <div class="section__head" data-rv>
+        <span class="label">Sponsors</span>
+        <h2 class="h2">Thank you to our sponsors.</h2>
+      </div>
+      <div class="sponsors" data-rv>
+        <p>Sponsor recognition is coming soon. Interested in supporting student rocketry at FGCU?
+          Reach out on <a class="inline" href="https://www.instagram.com/deeptechfgcu/" target="_blank" rel="noopener">Instagram</a>
+          or through <a class="inline" href="https://getinvolved.fgcu.edu/organization/deeptechclub" target="_blank" rel="noopener">Eagle Link</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section class="section">
+    <div class="wrap two" style="align-items:center">
+      <div data-rv>
+        <span class="label">Get involved</span>
+        <h2 class="h2" style="margin-top:14px">Come to a general body meeting.</h2>
+        <p class="lede" style="margin-top:16px">Usually every other Thursday at 5&nbsp;PM. Time and location can vary, so check GroupMe or Eagle Link before you head over.</p>
+      </div>
+      <div class="btn-row" data-rv>
+        <a class="btn btn--primary" href="join.html">How to join <span class="arw">&rarr;</span></a>
+        <a class="btn" href="https://www.instagram.com/deeptechfgcu/" target="_blank" rel="noopener">Photos on Instagram <span class="arw">&nearr;</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo-96.png" alt="" width="32" height="32">
+          <span>FGCU DeepTech</span>
+        </a>
+        <p>Student rocketry club at Florida Gulf Coast University, Fort Myers, Florida.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html#rocket">Rocket</a></li>
+          <li><a href="payload.html">Payload Challenge</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/deeptechfgcu/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://groupme.com/join_group/113872771/IdaYPGtn" target="_blank" rel="noopener">GroupMe</a></li>
+          <li><a href="https://getinvolved.fgcu.edu/organization/deeptechclub" target="_blank" rel="noopener">Eagle Link</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__legal">&copy; 2026 FGCU DeepTech &middot; A student organization at Florida Gulf Coast University</div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

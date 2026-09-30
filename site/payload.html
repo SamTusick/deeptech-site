@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rocket Payload Challenge — FGCU DeepTech</title>
+<meta name="description" content="Fall 2026 FGCU student competition: two student payloads fly on a real rocket. $500 per selected team for payload components.">
+<meta name="theme-color" content="#07090D">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rocket Payload Challenge — FGCU DeepTech">
+<meta property="og:image" content="assets/img/logo.jpg">
+<meta property="og:description" content="Fall 2026 FGCU student competition: two student payloads fly on a real rocket. $500 per selected team for payload components.">
+
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- STATUS STRIP -->
+<div class="strip" aria-label="Status">
+  <div class="strip__in wrap">
+    <span class="go" data-strip-t>Target launch ~Nov 30, 2026</span>
+    <span>26.4637&deg;N 81.7748&deg;W</span>
+    <span class="hide-s">Fort Myers, FL</span>
+  </div>
+  <i class="strip__prog" aria-hidden="true"></i>
+</div>
+
+<!-- ALTITUDE RAIL: scroll depth read as altitude, 0 ft to the ~5,000 ft predicted apogee -->
+<div class="alt" aria-hidden="true">
+  <span>ALT</span>
+  <div class="alt__track">
+    <i class="alt__fill"></i>
+    <svg class="alt__rocket" viewBox="0 0 14 28">
+      <path class="flame" d="M5.2 20 7 27l1.8-7Z" fill="#E8A33D"/>
+      <path d="M4 14 1.5 19.5V20H4Zm6 0 2.5 5.5V20H10Z" fill="#3FD99A"/>
+      <path d="M7 1c2.5 2.5 3 5 3 7v11H4V8c0-2 .5-4.5 3-7Z" fill="#E9EDF3"/>
+      <circle cx="7" cy="8.5" r="1.3" fill="#002D72"/>
+    </svg>
+  </div>
+  <span class="alt__val">0 ft</span>
+</div>
+
+<header class="hdr">
+  <div class="hdr__in wrap">
+    <a class="brand" href="index.html" aria-label="FGCU DeepTech home">
+      <img src="assets/img/logo-96.png" alt="" width="32" height="32">
+      <span>FGCU DeepTech</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="index.html#rocket">Rocket</a>
+      <a href="payload.html" aria-current="page">Payload Challenge</a>
+      <a href="join.html">Join</a>
+    </nav>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <a href="index.html">Home</a>
+  <a href="index.html#rocket">Rocket</a>
+  <a href="payload.html" aria-current="page">Payload Challenge</a>
+  <a href="join.html">Join</a>
+</nav>
+
+<main id="main">
+
+  <section class="phead">
+    <div class="wrap">
+      <span class="label" data-rv>Fall 2026 student competition</span>
+      <h1 class="h1" data-rv>Rocket Payload<br><span class="accent">Challenge</span></h1>
+      <p class="lede" data-rv>
+        Two student payloads. One real rocket flight. Design a small experiment that tests a
+        technology with a possible real-world application, and fly it on the FGCU DeepTech rocket.
+      </p>
+      <p class="muted" data-rv style="margin-top:18px">Student-led &middot; advisor-supported &middot; FGCU reviewed</p>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section class="section">
+    <div class="wrap">
+      <dl class="facts" data-rv>
+        <div><dt>Student teams selected</dt><dd>2</dd></div>
+        <div><dt>Payload component award, per team</dt><dd>$500</dd></div>
+        <div><dt>Real rocket flight</dt><dd>1</dd></div>
+        <div><dt>Target launch</dt><dd>Nov 30<small>2026 or later</small></dd></div>
+      </dl>
+      <p class="body" data-rv style="margin-top:28px">
+        Selected teams receive $500 for payload components, technical support, an integration path,
+        and the chance to test a minimum viable product under real flight conditions &mdash; with real
+        data to guide the next step. Rough ideas are welcome; no finalized design is required.
+      </p>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section">
+    <div class="wrap two">
+      <div class="section__head" data-rv>
+        <span class="label">The approach</span>
+        <h2 class="h2">Think like a startup: prove the riskiest assumption.</h2>
+        <p class="lede">Don't build the final product. Build the smallest experiment that answers the most important question. One clear question, one useful experiment.</p>
+      </div>
+      <table class="table" data-rv>
+        <tbody>
+          <tr><th scope="row">01 &middot; Problem</th><td>What matters?</td></tr>
+          <tr><th scope="row">02 &middot; Key question</th><td>What must be true?</td></tr>
+          <tr><th scope="row">03 &middot; Measure</th><td>What data answers it?</td></tr>
+          <tr><th scope="row">04 &middot; Success</th><td>What result counts?</td></tr>
+          <tr><th scope="row">05 &middot; Next move</th><td>What happens after?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WHO -->
+  <section class="section">
+    <div class="wrap two">
+      <div data-rv>
+        <span class="label">Who can enter</span>
+        <h2 class="h2" style="margin:14px 0 24px">Every major can contribute to a flight experiment.</h2>
+        <ul class="list">
+          <li>FGCU students from any major</li>
+          <li>Preferably 1&ndash;6 students per team</li>
+          <li>No aerospace, coding, electronics or engineering experience required</li>
+        </ul>
+      </div>
+      <div data-rv>
+        <h3 class="h3" style="margin-bottom:16px">Build a complementary team</h3>
+        <ul class="list">
+          <li>Technology</li>
+          <li>Experiment design</li>
+          <li>Business case</li>
+          <li>Build &amp; test</li>
+          <li>Funding</li>
+          <li>Communication</li>
+        </ul>
+        <p class="muted" style="margin-top:16px">Faculty and industry experts may support teams as mentors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENVELOPE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head" data-rv>
+        <span class="label">Payload envelope</span>
+        <h2 class="h2">Design inside a simple starting envelope.</h2>
+        <p class="lede">The rocket team will confirm final limits and integration details before flight.</p>
+      </div>
+      <div class="cards" data-rv>
+        <div class="card">
+          <span class="label">Approximate volume</span>
+          <h3 class="num" style="font-size:2rem">6 in &times; 10 in</h3>
+          <p>Plan your enclosure, connectors, access and mounting within this space.</p>
+        </div>
+        <div class="card">
+          <span class="label">Approximate mass range</span>
+          <h3 class="num" style="font-size:2rem">0.55&ndash;11 lb</h3>
+          <p>250&ndash;5,000 g. Smaller and lighter payloads are strongly encouraged.</p>
+        </div>
+      </div>
+      <p class="body" data-rv style="margin-top:24px">Tell the rocket team early if you need a camera view, optical access, radio communication, or unusual integration support.</p>
+    </div>
+  </section>
+
+  <!-- IDEAS + BUILD -->
+  <section class="section">
+    <div class="wrap two">
+      <div data-rv>
+        <span class="label">Ideas</span>
+        <h2 class="h2" style="margin:14px 0 16px">Almost any technology can become a payload.</h2>
+        <p class="body" style="margin-bottom:22px">The flight must teach you something that matters beyond the competition. These are prompts, not boundaries &mdash; propose a different idea if the flight can test it.</p>
+        <table class="table">
+          <tbody>
+            <tr><th scope="row">Fluids + thermal</th><td>Flow, cooling, life support</td></tr>
+            <tr><th scope="row">Aerodynamics</th><td>Drag, control, imaging</td></tr>
+            <tr><th scope="row">Landing systems</th><td>Parachutes, cargo, recovery</td></tr>
+            <tr><th scope="row">AI / sensing / positioning</th><td>Vision, sensors, positioning</td></tr>
+            <tr><th scope="row">Environment</th><td>Air, particles, remote sensing</td></tr>
+            <tr><th scope="row">Materials + structures</th><td>Stress, vibration, manufacturing</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div data-rv>
+        <span class="label">Keep it simple</span>
+        <h2 class="h2" style="margin:14px 0 16px">A winning payload is simple enough to finish.</h2>
+        <p class="body" style="margin-bottom:22px">You receive no extra points for complexity. Buy what exists; build only what proves your idea.</p>
+        <table class="table">
+          <tbody>
+            <tr><th scope="row">Sensor</th><td>Measure the effect</td></tr>
+            <tr><th scope="row">MCU / computer</th><td>Run the logic</td></tr>
+            <tr><th scope="row">Battery</th><td>Power the test</td></tr>
+            <tr><th scope="row">Memory</th><td>Save the data</td></tr>
+            <tr><th scope="row">Enclosure</th><td>Hold it securely</td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="margin-top:16px">Arduino, Raspberry Pi, ESP32, commercial sensors, GPS, cameras, 3D-printed parts and open-source software are all fair game.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION + PITCH -->
+  <section class="section">
+    <div class="wrap two">
+      <div data-rv>
+        <span class="label">The application</span>
+        <h2 class="h2" style="margin:14px 0 16px">Fits in 1&ndash;3 pages.</h2>
+        <p class="body" style="margin-bottom:22px">Rough concepts are welcome and a short presentation is acceptable. Estimates are fine; a finished design is not required. A drawing or simple diagram is encouraged.</p>
+        <table class="table">
+          <tbody>
+            <tr><th scope="row">01 &middot; Your team</th><td>Names, majors, roles</td></tr>
+            <tr><th scope="row">02 &middot; The problem</th><td>Who cares and why</td></tr>
+            <tr><th scope="row">03 &middot; Your idea</th><td>Technology in plain language</td></tr>
+            <tr><th scope="row">04 &middot; The experiment</th><td>Question, measurement, success</td></tr>
+            <tr><th scope="row">05 &middot; The payload</th><td>Size, mass, components, power, radio</td></tr>
+            <tr><th scope="row">06 &middot; Your plan</th><td>Build, ground test, budget, fundraising support</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div data-rv>
+        <span class="label">If shortlisted</span>
+        <h2 class="h2" style="margin:14px 0 16px">Tell the story in five minutes.</h2>
+        <p class="body" style="margin-bottom:22px">A 5-minute presentation plus about 5 minutes of questions. Polish matters less than clarity and execution.</p>
+        <ul class="list">
+          <li>What problem are you solving?</li>
+          <li>What is your idea?</li>
+          <li>Why is it useful or interesting?</li>
+          <li>What will the rocket help you test?</li>
+          <li>Can your team build it before launch?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCORING -->
+  <section class="section">
+    <div class="wrap two">
+      <div class="section__head" data-rv>
+        <span class="label">Judging</span>
+        <h2 class="h2">Strong ideas win only when they can be executed.</h2>
+        <p class="lede">Safety and fit are checked first. Qualifying proposals are then scored on six criteria. A simple experiment that answers a valuable question can beat a more complex proposal.</p>
+      </div>
+      <ul class="bars" data-rv>
+        <li><span class="nm">Innovation</span><span class="bar"><i style="width:100%"></i></span><span class="pc">25%</span></li>
+        <li><span class="nm">Impact + applications</span><span class="bar"><i style="width:80%"></i></span><span class="pc">20%</span></li>
+        <li><span class="nm">Feasibility before launch</span><span class="bar"><i style="width:80%"></i></span><span class="pc">20%</span></li>
+        <li><span class="nm">Quality of experiment</span><span class="bar"><i style="width:60%"></i></span><span class="pc">15%</span></li>
+        <li><span class="nm">Simplicity + smart reuse</span><span class="bar"><i style="width:40%"></i></span><span class="pc">10%</span></li>
+        <li><span class="nm">Team + funding strategy</span><span class="bar"><i style="width:40%"></i></span><span class="pc">10%</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="section">
+    <div class="wrap two">
+      <div data-rv>
+        <span class="label">Safety</span>
+        <h2 class="h2" style="margin:14px 0 16px">Disclose unusual features early.</h2>
+        <p class="body" style="margin-bottom:22px">You aren't expected to arrive knowing rocket safety. You are expected to tell us what your payload contains. Flag these items:</p>
+        <ul class="list">
+          <li>Liquids or chemicals</li>
+          <li>Pressurized containers</li>
+          <li>Heaters or powerful batteries</li>
+          <li>Radio transmitters or lasers</li>
+          <li>Magnets or sharp components</li>
+          <li>Moving or external mechanisms</li>
+        </ul>
+      </div>
+      <div data-rv>
+        <h3 class="h3" style="margin-bottom:16px">The payload must not interfere with</h3>
+        <ul class="list">
+          <li>Flight computer</li>
+          <li>Parachutes</li>
+          <li>Tracking system</li>
+          <li>Rocket structure</li>
+          <li>Propulsion system</li>
+        </ul>
+        <p class="muted" style="margin-top:16px">FGCU safety and research-compliance review is required before hardware or flight. Use commercially or publicly available, or approved, components &mdash; no controlled technical data or restricted technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="section" id="schedule">
+    <div class="wrap two">
+      <div class="section__head" data-rv>
+        <span class="label">Schedule</span>
+        <h2 class="h2">The schedule rewards early, simple decisions.</h2>
+        <p class="lede">Three checkpoints move the payload toward flight. They're designed to help teams succeed, not to eliminate them. The launch date may move; build deadlines still matter.</p>
+      </div>
+      <ol class="timeline" data-rv>
+        <li data-date="2026-08-27"><span class="when">Aug 27</span><b>Open</b><p>Form teams</p></li>
+        <li data-date="2026-09-30"><span class="when">Sep 30</span><b>Apply</b><p>Proposals due</p></li>
+        <li data-date="2026-10-12"><span class="when">Oct 12</span><b>Pitch</b><p>Finalist pitches, winners announced</p></li>
+        <li data-date="2026-10-26"><span class="when">Oct 26</span><b>Checkpoint 1 &middot; Design meeting</b><p>Question, parts, fit, measurement and safety</p></li>
+        <li data-date="2026-11-09"><span class="when">&asymp; Nov 9</span><b>Checkpoint 2 &middot; Working prototype</b><p>Core sensor, software and data path work</p></li>
+        <li data-date="2026-11-19"><span class="when">&asymp; Nov 19</span><b>Checkpoint 3 &middot; Flight readiness</b><p>Complete, tested and safe to integrate</p></li>
+        <li data-date="2026-11-23"><span class="when">&asymp; Nov 23</span><b>Deliver</b><p>Final payload handoff</p></li>
+        <li data-date="2026-11-30"><span class="when">Nov 30+</span><b>Launch</b><p>Fly and recover</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- AFTER -->
+  <section class="section">
+    <div class="wrap two">
+      <div data-rv>
+        <span class="label">Ground testing</span>
+        <h2 class="h2" style="margin:14px 0 16px">Your rocket flight should not be the first test.</h2>
+        <p class="body" style="margin-bottom:22px">Ground testing makes flight data trustworthy. Before flight, confirm that:</p>
+        <ul class="list">
+          <li>The battery lasts long enough</li>
+          <li>Memory saves the data</li>
+          <li>Components remain attached</li>
+          <li>Sensors and cameras record</li>
+          <li>Software starts reliably</li>
+          <li>The payload survives shaking</li>
+        </ul>
+      </div>
+      <div class="panel" data-rv>
+        <span class="label">After the flight</span>
+        <p>Recover the payload and data. Explain what worked, what surprised you, what you learned, and what you would test next.</p>
+        <p style="margin-top:14px;color:var(--ink)"><strong>A result that disproves your assumption can still be a successful experiment.</strong></p>
+        <p class="launch__note">Students should retain the ability to develop their ideas beyond the competition, subject to applicable FGCU policies and any separate agreements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <section class="section">
+    <div class="wrap">
+      <div data-rv>
+        <span class="label">Find a problem. Build the simplest test. Fly it.</span>
+        <h2 class="h2" style="margin-top:14px">Two FGCU venture teams will put their ideas on a real rocket.</h2>
+        <p class="lede" style="margin-top:16px">Questions and team feedback with advisors Mattia Barbarossa and Luca Principi.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo-96.png" alt="" width="32" height="32">
+          <span>FGCU DeepTech</span>
+        </a>
+        <p>Student rocketry club at Florida Gulf Coast University, Fort Myers, Florida.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html#rocket">Rocket</a></li>
+          <li><a href="payload.html">Payload Challenge</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/deeptechfgcu/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://groupme.com/join_group/113872771/IdaYPGtn" target="_blank" rel="noopener">GroupMe</a></li>
+          <li><a href="https://getinvolved.fgcu.edu/organization/deeptechclub" target="_blank" rel="noopener">Eagle Link</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__legal">&copy; 2026 FGCU DeepTech &middot; A student organization at Florida Gulf Coast University</div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
