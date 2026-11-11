@@ -102,7 +102,7 @@ function Payload() {
             ['Student teams selected', '2'],
             ['Payload component award, per team', '$500'],
             ['Real rocket flight', '1'],
-            ['Target launch', 'Nov 30', '2026 or later'],
+            ['Target launch', 'Jan 1st', '2027 or later'],
           ]}
         />
         <Body className="mt-7" data-rv>
