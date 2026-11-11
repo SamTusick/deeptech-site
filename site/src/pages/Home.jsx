@@ -17,7 +17,7 @@ function LaunchCard() {
   return (
     <Panel data-rv aria-label="Target launch">
       <Label muted className="mb-2.5">Target launch</Label>
-      <div className="font-head text-[1.1rem] font-semibold">Around November 30, 2026</div>
+      <div className="font-head text-[1.1rem] font-semibold">January 1st, 2027</div>
       <div className="mt-1.5 mb-1 flex items-baseline gap-3">
         {days > 0 ? (
           <>

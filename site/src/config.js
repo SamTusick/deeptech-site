@@ -1,6 +1,6 @@
 /* Target launch date. The launch card and the status strip count days to it.
    Update this when the date firms up (it is "around Nov 30, 2026 or later"). */
-export const LAUNCH_DATE = '2026-11-30T00:00:00-05:00';
+export const LAUNCH_DATE = '2027-1-1 00:00:00-05:00';
 
 /* Predicted apogee: the altitude rail reads 0 ft at the top of the page and this at the bottom. */
 export const APOGEE_FT = 5000;
